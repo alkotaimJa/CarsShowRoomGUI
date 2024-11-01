@@ -33,6 +33,13 @@
         <option value="commercial_registration_number">Commercial Registration</option>
       </select>
 
+      <!-- sort order -->
+      <label for="sortOrder" class="ml-4 mr-2">Sort order:</label>
+      <select [(ngModel)]="sortOrder" (change)="onSortOrderChange(sortOrder)" class="px-2 py-1 border rounded">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+
       <!-- Showroom List -->
       <div *ngIf="showrooms.length === 0" class="text-gray-600 mt-4">No showrooms available.</div>
       <div *ngFor="let showroom of showrooms" class="bg-white p-4 rounded shadow mb-4 mt-4">

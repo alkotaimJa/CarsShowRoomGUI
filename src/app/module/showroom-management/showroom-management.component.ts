@@ -14,12 +14,14 @@ import { ShowroomFormComponent } from '../showroom-form/showroom-form.component'
   imports: [CommonModule, RouterModule, FormsModule , ShowroomFormComponent]
 })
 export class ShowroomManagementComponent implements OnInit {
+
   showrooms: any[] = [];
   currentPage = 0;
   pageSize = 10;
   totalPages = 1;
   sortField = 'name';
   pageSizeOptions = [5, 10, 20];
+  sortOrder: any;
 
   constructor(
     private showroomService: ShowroomService,
@@ -36,7 +38,7 @@ export class ShowroomManagementComponent implements OnInit {
   }
 
   loadShowrooms(): void {
-    this.showroomService.getShowrooms(this.currentPage, this.pageSize, this.sortField).subscribe(
+    this.showroomService.getShowrooms(this.currentPage, this.pageSize, this.sortField, this.sortOrder).subscribe(
       (data) => {
         this.showrooms = data.content;
         this.totalPages = data.totalPages;
@@ -63,7 +65,10 @@ export class ShowroomManagementComponent implements OnInit {
     this.sortField = field;
     this.loadShowrooms();
   }
-
+   onSortOrderChange(order: any) {
+    this.sortOrder = order;
+    this.loadShowrooms(); 
+   }
   viewShowroom(id: string): void {
     // Navigate to the showroom coumbonenet
     this.router.navigate(['/showroom', id]);
