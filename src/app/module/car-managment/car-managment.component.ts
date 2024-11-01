@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CarService } from '../../../service/car.service';
+import { CarService } from '../../service/car.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CarFormComponent } from '../car-form/car-form.component';
 
 @Component({
   selector: 'app-car-managment',
@@ -11,11 +12,14 @@ import { Location } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
+    CarFormComponent
   ],
+  providers: [CarFormComponent],
   templateUrl: './car-managment.component.html',
   styleUrl: './car-managment.component.css'
 })
 export class CarManagmentComponent {
+
   cars: any[] = [];
   currentPage: number = 0;
   pageSize: number = 20;
@@ -65,7 +69,6 @@ export class CarManagmentComponent {
 
   onSortChange(newSortField: string): void {
     this.sortField = newSortField;
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'; // Toggle sort order
     this.loadCars();
   }
 
@@ -73,4 +76,9 @@ export class CarManagmentComponent {
     this.location.back();
 
   }
+  onSortOrderChange(arg0: string) {
+    this.sortOrder = this.sortOrder 
+    this.loadCars();
+
+}
 }

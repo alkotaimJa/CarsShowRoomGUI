@@ -1,0 +1,98 @@
+<div class="container mx-auto p-6 max-w-md">
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="vin" class="block font-semibold">VIN</label>
+        <input
+          id="vin"
+          type="text"
+          formControlName="vin"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="vin?.invalid && (vin?.touched || vin?.dirty)" class="text-red-500">
+          <small *ngIf="vin?.errors?.['required']">VIN is required.</small>
+          <small *ngIf="vin?.errors?.['maxlength']">Maximum 25 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="maker" class="block font-semibold">Maker</label>
+        <input
+          id="maker"
+          type="text"
+          formControlName="maker"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="maker?.invalid && (maker?.touched || maker?.dirty)" class="text-red-500">
+          <small *ngIf="maker?.errors?.['required']">Maker is required.</small>
+          <small *ngIf="maker?.errors?.['maxlength']">Maximum 25 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="model" class="block font-semibold">Model</label>
+        <input
+          id="model"
+          type="text"
+          formControlName="model"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="model?.invalid && (model?.touched || model?.dirty)" class="text-red-500">
+          <small *ngIf="model?.errors?.['required']">Model is required.</small>
+          <small *ngIf="model?.errors?.['maxlength']">Maximum 25 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="model_year" class="block font-semibold">Model Year</label>
+        <input
+          id="model_year"
+          type="text"
+          formControlName="model_year"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="model_year?.invalid && (model_year?.touched || model_year?.dirty)" class="text-red-500">
+          <small *ngIf="model_year?.errors?.['required']">Model year is required.</small>
+          <small *ngIf="model_year?.errors?.['pattern']">Must be a 4-digit number.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="price" class="block font-semibold">Price</label>
+        <input
+          id="price"
+          type="number"
+          formControlName="price"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="price?.invalid && (price?.touched || price?.dirty)" class="text-red-500">
+          <small *ngIf="price?.errors?.['required']">Price is required.</small>
+          <small *ngIf="price?.errors?.['pattern']">Must be a decimal number.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4" formGroupName="carShowroom">
+        <label for="commercial_registration_number" class="block font-semibold">Commercial Registration Number</label>
+        <input
+          id="commercial_registration_number"
+          type="text"
+          formControlName="commercial_registration_number"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="commercial_registration_number?.invalid && (commercial_registration_number?.touched || commercial_registration_number?.dirty)" class="text-red-500">
+          <small *ngIf="commercial_registration_number?.errors?.['required']">Registration number is required.</small>
+        </div>
+      </div>
+  
+      <div *ngIf="submissionError" class="text-red-500 mb-4">{{ submissionError }}</div>
+  
+      <button
+        type="submit"
+        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        [disabled]="carForm.invalid"
+      >
+        Add Car
+      </button>
+    </form>
+  </div>
+  
+  

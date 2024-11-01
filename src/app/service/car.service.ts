@@ -14,4 +14,8 @@ export class CarService {
     const url = `${environment.backend.Cars.fetchCars}/${id}?page=${page}&size=${size}&sort=${sort},${sortOrder}`;
     return this.http.get<any>(url);
   }
+
+  addCar(carData: any): Observable<any> {
+    return this.http.post<any>(`${environment.backend.Cars.createCar}`, carData);
+  }
 }

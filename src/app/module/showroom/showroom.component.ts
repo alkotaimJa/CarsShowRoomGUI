@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 import { ShowroomService } from '../../service/showroom.service';
 import { UpdateShowroomFormComponent } from '../update-showroom-form/update-showroom-form.component';
-import { CarManagmentComponent } from '../home/car-managment/car-managment.component';
+import { CarManagmentComponent } from '../car-managment/car-managment.component';
 
 interface Showroom {
   id: number;
