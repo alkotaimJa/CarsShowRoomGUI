@@ -4,7 +4,11 @@ export type Environment = {
         hostname: string,
         authService: string,
         carShowRoom: {
-            fetchShowroom: string
+            fetchShowRooms: string,
+            fetchShowroom: string,
+            deleteShowRoom: string,
+            createShowroom: string,
+            updateShowroom: string
         }
     }
 }

@@ -8,6 +8,10 @@ export const environment: Environment = {
         hostname: "",
         authService: "",
         carShowRoom: {
-            fetchShowroom: host + ':8077/showrooms'
+            fetchShowRooms: host + ':8077/showrooms',
+            fetchShowroom: host + ':8077/showroom',
+            deleteShowRoom: host + ':8077/showroom' ,
+            createShowroom: host + ':8077/showroom',
+            updateShowroom: host + ':8077/showroom'
         }
 }};

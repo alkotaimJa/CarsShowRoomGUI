@@ -4,12 +4,15 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  selector: 'app-not-found',
   standalone: true,
-  imports: [CommonModule, RouterModule]
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
+  templateUrl: './not-found.component.html',
+  styleUrl: './not-found.component.css'
 })
-export class HomeComponent {
+export class NotFoundComponent {
 
 }

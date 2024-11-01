@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ShowroomService } from '../../service/showroom.service';
 
 interface Showroom {
   id: number;
@@ -10,23 +14,33 @@ interface Showroom {
 @Component({
   selector: 'app-showroom',
   templateUrl: './showroom.component.html',
-  styleUrls: ['./showroom.component.css']
+  styleUrls: ['./showroom.component.css'],
+  standalone: true,
+  imports: [CommonModule, RouterModule] 
 })
-export class ShowroomComponent {
-  showrooms: Showroom[] = [];
-  showroom: Showroom = { id: 0, name: '', location: '', contact: '' };
+export class ShowroomComponent implements OnInit {
+  showroom: any;
 
-  onSubmit() {
-    const newShowroom: Showroom = { ...this.showroom, id: Date.now() };
-    this.showrooms.push(newShowroom);
-    this.showroom = { id: 0, name: '', location: '', contact: '' }; // Reset the form
+  constructor(
+    private route: ActivatedRoute, 
+    private showroomService: ShowroomService) { }
+
+  ngOnInit(): void {
+    const showroomId = this.route.snapshot.paramMap.get('id');
+    if (showroomId) {
+      this.loadShowroomDetails(showroomId);
+    }
   }
 
-  deleteShowroom(id: number) {
-    this.showrooms = this.showrooms.filter(showroom => showroom.id !== id);
+  loadShowroomDetails(id: string): void {
+    this.showroomService.viewShowroom(id).subscribe(
+      (data) => {
+        this.showroom = data; 
+      },
+      (error) => {
+        console.error('Error fetching showroom details', error);
+      }
+    );
   }
 
-  editShowroom(showroom: Showroom) {
-    this.showroom = { ...showroom }; // Load the selected showroom into the form
-  }
 }

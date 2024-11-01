@@ -1,0 +1,74 @@
+<div class="container mx-auto p-6 max-w-md">
+  
+    <form [formGroup]="showroomForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block font-semibold">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="text-red-500">
+          <small *ngIf="f['name'].errors?.['required']">Name is required.</small>
+          <small *ngIf="f['name'].errors?.['maxlength']">Maximum 100 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Commercial Registration Number</label>
+        <input
+          type="text"
+          formControlName="commercial_registration_number"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="f['commercial_registration_number'].invalid && (f['commercial_registration_number'].dirty || f['commercial_registration_number'].touched)" class="text-red-500">
+          <small *ngIf="f['commercial_registration_number'].errors?.['required']">Commercial Registration Number is required.</small>
+          <small *ngIf="f['commercial_registration_number'].errors?.['pattern']">Must be exactly 10 digits.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Manager Name</label>
+        <input
+          type="text"
+          formControlName="manager_name"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="f['manager_name'].invalid && (f['manager_name'].dirty || f['manager_name'].touched)" class="text-red-500">
+          <small *ngIf="f['manager_name'].errors?.['maxlength']">Maximum 100 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Contact Number</label>
+        <input
+          type="text"
+          formControlName="contact_number"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="f['contact_number'].invalid && (f['contact_number'].dirty || f['contact_number'].touched)" class="text-red-500">
+          <small *ngIf="f['contact_number'].errors?.['required']">Contact Number is required.</small>
+          <small *ngIf="f['contact_number'].errors?.['pattern']">Must be numeric, up to 15 digits.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Address</label>
+        <textarea
+          formControlName="address"
+          class="w-full p-2 border rounded"
+          rows="3"
+        ></textarea>
+        <div *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched)" class="text-red-500">
+          <small *ngIf="f['address'].errors?.['maxlength']">Maximum 255 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div *ngIf="submissionError" class="text-red-500 mb-4">{{ submissionError }}</div>
+  
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" [disabled]="showroomForm.invalid">
+        Create Showroom
+      </button>
+    </form>
+  </div>
+  
