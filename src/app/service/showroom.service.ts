@@ -24,8 +24,8 @@ export class ShowroomService {
     return this.http.post<any>(environment.backend.carShowRoom.createShowroom, showroomData);
   }
 
-  editShowroom(id: string, data: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, data);
+  updateShowroom(id: string, updatedData: any): Observable<any> {
+    return this.http.put<any>(`${environment.backend.carShowRoom.updateShowroom}/${id}`, updatedData);
   }
 
   deleteShowroom(id: string): Observable<any> {

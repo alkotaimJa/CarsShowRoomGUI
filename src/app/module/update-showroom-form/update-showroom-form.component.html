@@ -1,0 +1,47 @@
+<div class="container mx-auto p-6 max-w-md bg-white rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Update Showroom Details</h1>
+  
+    <form [formGroup]="showroomForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block font-semibold">Manager Name</label>
+        <input
+          type="text"
+          formControlName="manager_name"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="showroomForm.controls['manager_name'].invalid && (showroomForm.controls['manager_name'].dirty || showroomForm.controls['manager_name'].touched)" class="text-red-500">
+          <small *ngIf="showroomForm.controls['manager_name'].errors?.['maxlength']">Maximum 100 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Contact Number</label>
+        <input
+          type="text"
+          formControlName="contact_number"
+          class="w-full p-2 border rounded"
+        />
+        <div *ngIf="showroomForm.controls['contact_number'].invalid && (showroomForm.controls['contact_number'].dirty || showroomForm.controls['contact_number'].touched)" class="text-red-500">
+          <small *ngIf="showroomForm.controls['contact_number'].errors?.['required']">Contact Number is required.</small>
+          <small *ngIf="showroomForm.controls['contact_number'].errors?.['pattern']">Must be numeric, up to 15 digits.</small>
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label class="block font-semibold">Address</label>
+        <textarea
+          formControlName="address"
+          class="w-full p-2 border rounded"
+          rows="3"
+        ></textarea>
+        <div *ngIf="showroomForm.controls['address'].invalid && (showroomForm.controls['address'].dirty || showroomForm.controls['address'].touched)" class="text-red-500">
+          <small *ngIf="showroomForm.controls['address'].errors?.['maxlength']">Maximum 255 characters allowed.</small>
+        </div>
+      </div>
+  
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" [disabled]="showroomForm.invalid">
+        Update Showroom
+      </button>
+    </form>
+  </div>
+  

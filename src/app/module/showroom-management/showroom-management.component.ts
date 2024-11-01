@@ -32,7 +32,7 @@ export class ShowroomManagementComponent implements OnInit {
     this.loadShowrooms();
   }
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/home']);
   }
 
   loadShowrooms(): void {
