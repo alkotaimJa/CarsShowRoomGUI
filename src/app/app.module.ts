@@ -9,8 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    // AppComponent, 
-    // HomeComponent,
+    AppComponent, 
+    HomeComponent,
     ShowroomComponent,
     ShowroomManagementComponent
   ],
@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [],
   bootstrap: [
-    // AppComponent
+     AppComponent
   ] 
 })
 export class AppModule { }
