@@ -12,8 +12,8 @@ export class ShowroomService {
 
   constructor(private http: HttpClient) {}
 
-  getShowrooms(page: number = 0, size: number = 10, sort: string = ''): Observable<any> {
-    const url = `${environment.backend.carShowRoom.fetchShowRooms}?page=${page}&size=${size}&sort=${sort}`;
+  getShowrooms(page: number = 0, size: number = 10, sort: string = '',sortOrder: string = 'asc'): Observable<any> {
+    const url = `${environment.backend.carShowRoom.fetchShowRooms}?page=${page}&size=${size}&sort=${sort},${sortOrder}`;
     return this.http.get<any>(url);
   }
   viewShowroom(id: string): Observable<any> {

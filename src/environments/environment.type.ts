@@ -10,5 +10,9 @@ export type Environment = {
             createShowroom: string,
             updateShowroom: string
         }
+        Cars:{
+            fetchCars: string,
+            createCar: string,
+        }
     }
 }

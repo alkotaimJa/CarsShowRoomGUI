@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 import { ShowroomService } from '../../service/showroom.service';
 import { UpdateShowroomFormComponent } from '../update-showroom-form/update-showroom-form.component';
+import { CarManagmentComponent } from '../home/car-managment/car-managment.component';
 
 interface Showroom {
   id: number;
@@ -18,11 +19,13 @@ interface Showroom {
   templateUrl: './showroom.component.html',
   styleUrls: ['./showroom.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule, UpdateShowroomFormComponent] 
+  imports: [CommonModule, RouterModule, UpdateShowroomFormComponent, CarManagmentComponent] 
 })
 export class ShowroomComponent implements OnInit {
   showroom: any;
-  showroomId: string | null = null;
+  showroomNumber: string | null = null;
+  shoeroomId: string | null = null;
+
 
   constructor(
     private route: ActivatedRoute, 
@@ -31,17 +34,18 @@ export class ShowroomComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-      this.showroomId = this.route.snapshot.paramMap.get('id');
-      if (this.showroomId) {
+      this.showroomNumber = this.route.snapshot.paramMap.get('id');
+      if (this.showroomNumber) {
         this.loadShowroomDetails();
       }
     }
   
     loadShowroomDetails(): void {
-      if (this.showroomId) {
-        this.showroomService.viewShowroom(this.showroomId).subscribe(
+      if (this.showroomNumber) {
+        this.showroomService.viewShowroom(this.showroomNumber).subscribe(
           (data) => {
             this.showroom = data;
+            this.shoeroomId = data.id;
           },
           (error) => {
             console.error('Error loading showroom details', error);
@@ -55,8 +59,14 @@ export class ShowroomComponent implements OnInit {
     }
 
     onFormSubmitted(): void {
-      // this.router.navigate(['/showRoom', ]);
+      this.router.navigate(['/showRoom', this.showroomNumber]);
         }
+    
+    goToCarList(): void {
+       if (this.shoeroomId) {
+            this.router.navigate(['/cars', this.shoeroomId]); 
+          }
+       }
   }
 
 
