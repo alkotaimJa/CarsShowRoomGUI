@@ -28,6 +28,9 @@ export class CarManagmentComponent {
   sortOrder: string = 'asc';
   pageSizeOptions: number[] = [5, 10, 20];
 
+  filteredCars: any[] = [];
+  filterText: string = '';
+
   showroomId: string = "";
 
   constructor(
@@ -47,10 +50,25 @@ export class CarManagmentComponent {
       (response) => {
         this.cars = response.content;
         this.totalPages = response.totalPages;
+        this.filteredCars = [...this.cars];
+        this.applyFilter();
       },
       (error) => {
         console.error('Error loading cars', error);
       }
+    );
+  }
+
+  applyFilter() {
+    const lowerCaseFilter = this.filterText.toLowerCase();
+
+    this.filteredCars = this.cars.filter(car =>
+      car.maker.toLowerCase().includes(lowerCaseFilter) ||
+      car.model.toLowerCase().includes(lowerCaseFilter) ||
+      car.modelYear.toString().includes(lowerCaseFilter) ||
+      car.price.toString().includes(lowerCaseFilter) ||
+      car.carShowroomName.toLowerCase().includes(lowerCaseFilter) ||
+      car.contactNumber.toString().includes(lowerCaseFilter)
     );
   }
 
