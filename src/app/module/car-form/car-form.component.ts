@@ -45,8 +45,6 @@ export class CarFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // set initail valeu the coummercail registration number
-    // get showroomNumber from the route parameters
      if (this.route.snapshot.paramMap.get('showroomNumber')) {
         this.carForm.get('carShowroom.commercial_registration_number')!.patchValue(this.route.snapshot.paramMap.get('showroomNumber'));
        }
@@ -64,6 +62,7 @@ export class CarFormComponent implements OnInit {
       next: () => {
         alert('Car added successfully!');
         this.carForm.reset();
+        window.location.reload();
       },
       error: (err: any) => {
         this.submissionError = err?.error?.message || 'An unexpected error occurred. Please try again.';

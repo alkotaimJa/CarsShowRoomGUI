@@ -47,6 +47,8 @@ export class ShowroomFormComponent {
         () => {
           alert('Showroom created successfully!');
           this.showroomForm.reset();
+          window.location.reload();
+
         },
         (error) => {
           this.submissionError = 'Failed to create showroom. Please try again.';

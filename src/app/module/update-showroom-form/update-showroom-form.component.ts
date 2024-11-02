@@ -53,8 +53,7 @@ export class UpdateShowroomFormComponent {
       this.showroomService.updateShowroom(this.showroomId, this.showroomForm.value).subscribe(
         () => {
           alert('Showroom updated successfully!');
-          debugger
-          this.router.navigate(['/showroom', this.showroomId]);
+          window.location.reload();
         },
         (error) => {
           console.error('Error updating showroom', error);
