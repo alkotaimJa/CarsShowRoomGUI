@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CarService } from '../../service/car.service';
 
@@ -13,7 +13,7 @@ import { CarService } from '../../service/car.service';
   templateUrl: './car-form.component.html',
   styleUrl: './car-form.component.css'
 })
-export class CarFormComponent {
+export class CarFormComponent implements OnInit {
     carForm: FormGroup;
     submissionError: string | null = null;
   
@@ -40,6 +40,11 @@ export class CarFormComponent {
   get price() { return this.carForm.get('price'); }
   get commercial_registration_number() {
     return this.carForm.get('carShowroom.commercial_registration_number');
+  }
+
+  ngOnInit(): void {
+    // set initail valeu the coummercail registration number
+    this.commercial_registration_number?.patchValue('123456789');
   }
 
   onSubmit() {
