@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CarService } from '../../service/car.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car-form',
@@ -19,6 +20,7 @@ export class CarFormComponent implements OnInit {
   
     constructor(
        private fb: FormBuilder,
+       private route: ActivatedRoute,
        private carService: CarService) {
       
       this.carForm = this.fb.group({
@@ -44,7 +46,10 @@ export class CarFormComponent implements OnInit {
 
   ngOnInit(): void {
     // set initail valeu the coummercail registration number
-    this.commercial_registration_number?.patchValue('123456789');
+    // get showroomNumber from the route parameters
+     if (this.route.snapshot.paramMap.get('showroomNumber')) {
+        this.carForm.get('carShowroom.commercial_registration_number')!.patchValue(this.route.snapshot.paramMap.get('showroomNumber'));
+       }
   }
 
   onSubmit() {

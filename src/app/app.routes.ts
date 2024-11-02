@@ -12,7 +12,7 @@ export const routes: Routes = [  // Add 'export' here
     { path: 'showroom', component: ShowroomComponent },
     { path: 'showroom/:id', component: ShowroomComponent },
     { path: 'showroom-management', component: ShowroomManagementComponent },
-    { path: 'cars/:showroomId', component: CarManagmentComponent },
+    { path: 'cars/:showroomId/:showroomNumber', component: CarManagmentComponent },
     { path: '**', component: NotFoundComponent },
 
   ];

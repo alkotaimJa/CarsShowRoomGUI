@@ -64,7 +64,7 @@ export class ShowroomComponent implements OnInit {
     
     goToCarList(): void {
        if (this.shoeroomId) {
-            this.router.navigate(['/cars', this.shoeroomId]); 
+            this.router.navigate(['/cars', this.shoeroomId, this.showroomNumber]); 
           }
        }
   }
